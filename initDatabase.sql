@@ -8,16 +8,32 @@ CREATE TABLE products (
   product_name VARCHAR(30),
   department_name VARCHAR(30),
   price DECIMAL(10,2),
-  stock_quantity INT
+  stock_quantity INT,
+  product_sales INT DEFAULT 0
 );
 
-INSERT INTO products 
-(product_name, department_name, price, stock_quantity) 
-VALUES ("Generic shooting game", "Electronics", 60.99, 1000);
+CREATE TABLE departments (
+  department_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  department_name VARCHAR(30),
+  over_head_costs INT
+);
+
+INSERT INTO departments (department_name, over_head_costs) 
+VALUES ("Electronics", 1000);
+
+INSERT INTO departments (department_name, over_head_costs) 
+VALUES ("Garden", 500);
+
+INSERT INTO departments (department_name, over_head_costs) 
+VALUES ("Food", 2000);
 
 INSERT INTO products 
-(product_name, department_name, price, stock_quantity) 
-VALUES ("Gadget", "Electronics", 30.00, 3);
+(product_name, department_name, price, stock_quantity, product_sales) 
+VALUES ("Generic shooting game", "Electronics", 60.99, 1000, 5000);
+
+INSERT INTO products 
+(product_name, department_name, price, stock_quantity, product_sales) 
+VALUES ("Gadget", "Electronics", 30.00, 3, 60);
 
 INSERT INTO products 
 (product_name, department_name, price, stock_quantity) 

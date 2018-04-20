@@ -1,12 +1,14 @@
 require('dotenv').config();
 let mysql = require('mysql');
 
+const TABLE = 'products';
 const COLUMNS = [
     'item_id', 
     'product_name', 
     'department_name', 
     'price', 
-    'stock_quantity'
+    'stock_quantity',
+    'product_sales'
 ];
 
 let conn = mysql.createConnection({

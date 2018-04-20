@@ -1,6 +1,6 @@
-let inquirer = require('inquirer');
-let mysql = require('mysql');
-let db = require('./database.js');
+const inquirer = require('inquirer');
+const cTable = require('console.table');
+const db = require('./database.js');
 
 // stores database values
 let data;
@@ -15,9 +15,7 @@ db.connect().then(function() {
   return db.query('SELECT * FROM products');
 }).then(function(res) {
   // display products
-  res.forEach(e => {
-      console.log(`ID: ${e.item_id} Name: ${e.product_name} Price: ${e.price}`);
-  });
+  console.table(res);
   return res;
 }).then(function(res) {
   // stash data globally (ugh)
@@ -41,12 +39,8 @@ db.connect().then(function() {
       message: function(ans) {
         return `How many units of "${findById(ans.id).product_name}" do you want to buy?`;
       },
-      filter: function(ans) {
-        return parseInt(ans);
-      },
-      validate: function(ans) {
-        return ans > 0 || "Not valid number";
-      }
+      filter: ans => parseInt(ans),
+      validate: ans => ans > 0 || "Not valid number"
     }
   ]);
 }).then(function(ans) {
@@ -54,13 +48,15 @@ db.connect().then(function() {
   let item = findById(ans.id);
   if(item.stock_quantity >= ans.units) {
     // enough quantity, update database
-    db.query('UPDATE products SET ? WHERE ?',
+    let totalCost = ans.units * item.price;
+    db.query('UPDATE products SET ?,? WHERE ?',
       [
         {stock_quantity: item.stock_quantity - ans.units},
+        {product_sales: item.product_sales + totalCost},
         {item_id: item.item_id}
       ]
     ).then(function(res) {
-      console.log('Price:', ans.units * item.price);
+      console.log('Price:', totalCost);
     });
   } else {
     console.log('Not enough in stock.');
@@ -71,4 +67,3 @@ db.connect().then(function() {
   console.log(err);
   throw err;
 });
-
