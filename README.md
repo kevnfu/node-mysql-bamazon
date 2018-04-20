@@ -66,7 +66,8 @@ These sales are reflected in the supervisor view.
 
 ## Dependencies
 Listed in `package.json`.
-`inquirer` for getting user input
-`console.table` for displaying tables
-`mysql` for accessing database
-`dotenv` to hide database password
+
+* `inquirer` for getting user input
+* `console.table` for displaying tables
+* `mysql` for accessing database
+* `dotenv` to hide database password
