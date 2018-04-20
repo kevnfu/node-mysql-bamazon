@@ -49,8 +49,7 @@ function addStock() {
       name: 'id',
       message: 'Which product id?',
       filter: ans => parseInt(ans)
-    },
-    {
+    },{
       name: 'amount',
       message: 'Add how much?',
       filter: ans => parseInt(ans)
@@ -67,12 +66,10 @@ function newProduct() {
     {
       name: 'name',
       message: 'Product name?'
-    },
-    {
+    },{
       name: 'department',
       message: 'Department name?'
-    },
-    {
+    },{
       name: 'price',
       message: 'Price?',
       filter: function(ans) {
@@ -81,8 +78,7 @@ function newProduct() {
       validate: function(ans) {
         return ans > 0;
       }
-    },
-    {
+    },{
       name: 'quantity',
       message: 'Quantity?',
       filter: function(ans) {

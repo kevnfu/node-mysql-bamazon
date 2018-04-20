@@ -33,8 +33,7 @@ db.connect().then(function() {
           return true;
         }
       }
-    },
-    {
+    },{
       name: 'units',
       message: function(ans) {
         return `How many units of "${findById(ans.id).product_name}" do you want to buy?`;

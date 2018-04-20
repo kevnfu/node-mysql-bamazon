@@ -40,8 +40,7 @@ function create() {
     {
       name: 'name',
       message: 'Department name?'
-    },
-    {
+    },{
       name: 'overhead',
       message: 'Overhead costs?',
       filter: ans => parseFloat(ans)
