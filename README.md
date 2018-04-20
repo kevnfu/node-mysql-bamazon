@@ -5,9 +5,9 @@ App simulates an online store, backed by a mysql database. There are three diffe
 
 ### Customer
 Called with `node bamazonCustomer.js`. Shows all available products, and then asks what, and how much the customer wants to buy.
-<img src='images/customer1.png'>
+<img src='/images/customer1.png'>
 Total price is shown to the customer, and the database is updated. Quantity is decreased by how many units the customer purchased, and product_sales is increased by total price of order.
-<img src='images/customer2.png'>
+<img src='/images/customer2.png'>
 Attempting to purchase more units than are in stock results is not allowed.
 
 ### Manager
