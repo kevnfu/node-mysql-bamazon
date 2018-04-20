@@ -17,7 +17,7 @@ VALUES ("Generic shooting game", "Electronics", 60.99, 1000);
 
 INSERT INTO products 
 (product_name, department_name, price, stock_quantity) 
-VALUES ("Gadget", "Electronics", 30.00, 2000);
+VALUES ("Gadget", "Electronics", 30.00, 3);
 
 INSERT INTO products 
 (product_name, department_name, price, stock_quantity) 
@@ -41,7 +41,7 @@ VALUES ("Pizza", "Food", 10, 30);
 
 INSERT INTO products 
 (product_name, department_name, price, stock_quantity) 
-VALUES ("Salmon", "Food", 30, 20);
+VALUES ("Salmon", "Food", 30, 2);
 
 INSERT INTO products 
 (product_name, department_name, price, stock_quantity) 
@@ -49,7 +49,7 @@ VALUES ("Speakers", "Electronics", 300, 4);
 
 INSERT INTO products 
 (product_name, department_name, price, stock_quantity) 
-VALUES ("Fertilizer", "Garden", 15, 876);
+VALUES ("Fertilizer", "Garden", 15, 1);
 
 
 SELECT * FROM products;

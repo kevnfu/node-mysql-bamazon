@@ -1,24 +1,6 @@
 let inquirer = require('inquirer');
 let mysql = require('mysql');
-let conn = require('./connection');
-
-function connectPromise() {
-  return new Promise((resolve, reject) => {
-    conn.connect(function(err) {
-      if(err) reject(err);
-      resolve();
-    });
-  });
-}
-
-function queryPromise(...args) {
-  return new Promise((resolve, reject) => {
-    conn.query(...args, function(err, res) {
-      if(err) reject(err);
-      resolve(res);
-    });
-  })
-}
+let db = require('./database.js');
 
 // stores database values
 let data;
@@ -28,9 +10,9 @@ function findById(id) {
 }
 
 // establish connection
-connectPromise().then(function() {
+db.connect().then(function() {
   // get data
-  return queryPromise('SELECT * FROM products');
+  return db.query('SELECT * FROM products');
 }).then(function(res) {
   // display products
   res.forEach(e => {
@@ -72,7 +54,7 @@ connectPromise().then(function() {
   let item = findById(ans.id);
   if(item.stock_quantity >= ans.units) {
     // enough quantity, update database
-    queryPromise('UPDATE products SET ? WHERE ?',
+    db.query('UPDATE products SET ? WHERE ?',
       [
         {stock_quantity: item.stock_quantity - ans.units},
         {item_id: item.item_id}
@@ -83,9 +65,8 @@ connectPromise().then(function() {
   } else {
     console.log('Not enough in stock.');
   }
-
   // close connection
-  conn.end();
+  db.end();
 }).catch(function(err) {
   console.log(err);
   throw err;
