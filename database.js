@@ -40,4 +40,3 @@ function queryPromise(...args) {
 exports.connect = connectPromise;
 exports.query = queryPromise;
 exports.end = conn.end.bind(conn);
-exports.COLUMNS = COLUMNS;

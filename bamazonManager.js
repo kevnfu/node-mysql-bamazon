@@ -72,21 +72,13 @@ function newProduct() {
     },{
       name: 'price',
       message: 'Price?',
-      filter: function(ans) {
-        return parseFloat(ans);
-      },
-      validate: function(ans) {
-        return ans > 0;
-      }
+      filter: ans => parseFloat(ans),
+      validate: ans => ans > 0 || 'Price must be greater than zero'
     },{
       name: 'quantity',
       message: 'Quantity?',
-      filter: function(ans) {
-        return parseInt(ans);
-      },
-      validate: function(ans) {
-        return ans > 0;
-      }
+      filter: ans => parseInt(ans),
+      validate: ans => ans > 0 || 'Quantity must be greater than zero'
     }
   ]).then(function(ans) {
     return db.query(
